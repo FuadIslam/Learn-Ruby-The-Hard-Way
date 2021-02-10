@@ -1,0 +1,24 @@
+returns the value of the block.
+
+If path starts with a pipe character ("|"), a subprocess is created, connected
+to the caller by a pair of pipes.  The returned IO object may be used to write
+to the standard input and read from the standard output of this subprocess.
+
+If the command following the pipe is a single minus sign ("|-"), Ruby forks,
+and this subprocess is connected to the parent.  If the command is not "-",
+the subprocess runs the command.
+
+When the subprocess is Ruby (opened via "|-"), the open call returns nil.  If
+a block is associated with the open call, that block will run twice --- once
+in the parent and once in the child.
+
+The block parameter will be an IO object in the parent and nil in the child.
+The parent's IO object will be connected to the child's $stdin and $stdout.
+The subprocess will be terminated at the end of the block.
+
+=== Examples
+
+Reading from "testfile":
+
+  open("testfile") do |f|
+:
