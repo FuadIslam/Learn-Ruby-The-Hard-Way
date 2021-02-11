@@ -8,8 +8,8 @@ def rewind(f)
   f.seek(0)
 end
 
-def print_a_line(line_count, f)
-  puts "#{line_count}, #{f.gets.chomp}"
+def print_a_line(f)
+  puts "->#{f.gets.chomp}"
 end
 #Why it works
 #It just read each character from the file until it hits a \n (new line),
@@ -28,10 +28,14 @@ rewind(current_file)
 puts "Let's print three lines:"
 
 current_line = 1
-print_a_line(current_line, current_file)
+puts current_line
+print_a_line(current_file)
 
 current_line = current_line + 1
-print_a_line(current_line, current_file)
+puts current_line
+print_a_line(current_file)
+
 
 current_line = current_line + 1
-print_a_line(current_line, current_file)
+puts current_line
+print_a_line(current_file)
